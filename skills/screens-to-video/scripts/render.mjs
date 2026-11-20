@@ -33,6 +33,6 @@ if (mode === 'stills') {
     if (!ff.stdin.write(buf)) await new Promise(r => ff.stdin.once('drain', r));
     if (i % 90 === 0) console.log('frame', i, '/', n);
   }
-  ff.stdin.end(); await new Promise(r => ff.on('close', r));
+  ff.stdin.end(); await new Promise((resolve, reject) => ff.on('close', (code, signal) => code === 0 ? resolve() : reject(new Error(`ffmpeg exited with ${signal ?? 'code ' + code}`))));
 }
 await browser.close();

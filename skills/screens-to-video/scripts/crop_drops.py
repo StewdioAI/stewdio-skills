@@ -1,4 +1,4 @@
-import sys, os, json, colorsys
+import sys, os, re, json, colorsys
 import numpy as np
 from PIL import Image
 from scipy import ndimage
@@ -20,7 +20,8 @@ if args[0] == '--meta':
     json.dump(meta, open(os.path.join(d, 'meta.json'), 'w'))
     open(os.path.join(d, 'meta.js'), 'w').write('window.META=' + json.dumps(meta) + ';')
     print(len(meta), 'images'); sys.exit()
-out = args[0]; os.makedirs(out, exist_ok=True); k = 0
+out = args[0]; os.makedirs(out, exist_ok=True)
+k = max([int(f[1:4]) + 1 for f in os.listdir(out) if re.fullmatch(r'd\d{3}\.jpg', f)], default=0)
 for f in args[1:]:
     im = Image.open(f).convert('RGB'); a = np.asarray(im).astype(int); H, W = a.shape[:2]
     m = (255 - a).sum(axis=2) > 60; m[:top, :] = False; m[H - bottom:, :] = False
