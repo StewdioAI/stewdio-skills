@@ -34,8 +34,13 @@ make a launch film for saved collections in my app
 2. **Screens.** Finds the feature's own screens, its entry point and its outcome in the
    Revyl Atlas, and crops the real content out of the screenshots.
 3. **Script.** Picks five look references, three motion references and one camera
-   reference from the mobile-motion channel, and writes numbered beats with times and
-   camera moves to `film/BRIEF.md`.
+   reference from the mobile-motion channel, writes numbered beats with times to
+   `film/BRIEF.md`, and writes the camera as a shot list (`film/shots.json`): about
+   fifteen shots that cut between the whole phone, the screen and a macro on one
+   control, with the phone laid back and rolled. `scripts/camera.py` checks the list
+   against numbers measured from the references and turns it into the camera rig: the
+   keyframes, plain cuts that sit inside one long, slow eased move, and a shaded phone
+   (`template/phone.xml`) whose frame, edge light and shadow turn with each pose.
 4. **Build.** Creates the File in Stewdio with every element as its own layer, checks
    frames at each beat, and hands over the File with the export steps. Export is a click
    in Stewdio.
@@ -48,9 +53,11 @@ skills/screens-to-video/
   agents/openai.yaml          Codex display metadata
   references/channel-notes.md vetted blocks from the mobile-motion channel
   scripts/arena.py            are.na listing, downloads, stills and contact sheets
+  scripts/camera.py           shot list -> the Camera composition (keyframes, cuts, phone), with checks
   scripts/sheet.py            contact sheets of Atlas screenshots
   scripts/crop_drops.py       crops image cards out of screenshots
   scripts/render.mjs          frame-by-frame render for the HTML fallback
+  template/phone.xml          the phone: shadow, metal body and glass as Stewdio Graphics
   template/                   a worked example: brief and HTML timeline of one film
 ```
 

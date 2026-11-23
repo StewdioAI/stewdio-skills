@@ -22,15 +22,25 @@ looked at. Anything else in the channel has not been vetted yet.
 
 ## camera (k1)
 
-Vetted for how the frame and the phone move, not for the screen. Stewdio is 2D: port a 3D
-tilt as roll + scale + pan.
+Vetted for how the frame and the phone move, not for the screen. Measured on dense
+sheets (`arena.py sheet <mp4> <png> 36`); "phone" is the phone's height against the frame's.
 
-| block | camera language | take |
-|---|---|---|
-| 52995376 | Orion: macro crop of a tilted phone corner (0-1s), cut to the whole phone in hand (1.1s), push-in on the screen (2.1-3.2s), rotated macro again (4.3s), blur-through cut (7.4s) | the alternation of framings, about 1x -> 3x with 15-25deg roll, a new framing every 1-2s; the default k1 |
-| 52995452 | drum machine app: one phone at a steep tilt, the camera tracks slowly along the screen at macro scale for the whole clip, never stopping | continuous drift along the UI at about 2x with roll -25deg; good for a calm mechanic beat |
-| 52995372 | obeo: phones sweep through the frame rotated (3.5s), a phone enters close and tilted beside the title (7-9s) | a phone entering rotated and settling; title-to-phone handoff |
-| 52995494 | travel map: phone static, the content moves | a calm hold; pair with a k1 that moves, never alone |
+| block | shots | framings | tilt and roll | how shots start | take |
+|---|---|---|---|---|---|
+| 52995376 | Orion, 12.6s: a new shot every 0.75-1.5s, eleven in the first 9s | macro on one control (phone about 350%, the bezel a diagonal across the frame) -> whole phone in hand (50%) -> one ui card alone on a full-bleed blurred backdrop -> medium (115%, cut off at the bottom) | macro laid back and rolled 25-35deg; medium rolled 6-8deg | no cut joins two frames at rest: each is a blur and a bloom to white, about 4 frames out and 6 in, with both shots already moving; the opening is a montage of 2-frame flashes | the alternation macro / whole / medium and its pace; each shot creeps in about 4% a second, none is still. The default k1 |
+| 52995452 | drum machine, 24.8s: three shots (0-2s, 2-10s, 10-24.8s) | whole phone for the first 2s only, then macro at about 220% for the rest | laid back about 55deg, turned 30deg, the orange edge of the body in view the whole time | one push in, one cut | a macro that tracks along the ui for seconds without stopping while the taps happen inside it; the thickness of a laid-back phone |
+| 52995372 | obeo, 15.6s: a new framing every 1.5-2.5s | title alone -> phones sweeping through the corners -> the phone rising from below with only its top 45% in frame (180%) under a title -> a phone entering from the right edge, laid back, half cut off | sweeping phones rolled 25-30deg | no cuts at all: the phone turns from one pose to the next in about 0.4s; the backdrop changes colour with each beat | the phone cut off by the frame under a level title; entering laid back from an edge |
+| 52995494 | travel map: one shot, the phone static, the content moves | wide only | none | - | a calm hold for a single beat; never the film's whole camera |
+
+What they share, and what `scripts/camera.py` checks: the whole phone is in frame for
+less than half the runtime, the closest shot is three times the widest or more, the
+phone is laid back or rolled in most shots, shots start on cuts that carry their motion or on a turn of the phone, and no frame is
+still.
+
+The phone in all four is a lit 3D render: a metal frame with a highlight along one edge,
+a thin black bezel, a thick rounded side with speaker holes and a port when it lies back,
+and a soft shadow. `template/phone.xml` draws those from the pose; a flat rounded rect
+next to these clips looks like a sticker.
 
 Weak for camera: 52995382 (cuts, phone static), 52995493 (phone static, only crops).
 
