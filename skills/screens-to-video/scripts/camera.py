@@ -238,7 +238,7 @@ def tracks(cfg, shots):
     """Keyframes for every animated field of the rig, from one list of (time, state, easing)."""
     fps, keys = cfg["fps"], []
     def along(s, t):
-        p = (t - s["land"]) / (s["end"] - s["land"])
+        p = (t - s["land"]) / max(s["end"] - s["land"], 1e-9)
         return dict(look=tuple(a + (b - a) * p for a, b in zip(s["look"], s["look_end"])), zoom=s["zoom"] + (s["zoom_end"] - s["zoom"]) * p,
                     roll=s["roll"] + (s["roll_end"] - s["roll"]) * p, place=s["place"], tilt=s["tilt"])
     for s in shots:
